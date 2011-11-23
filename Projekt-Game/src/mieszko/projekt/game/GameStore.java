@@ -20,15 +20,20 @@ public class GameStore {
 		logger.debug("Usunieto gre ze sklepu: " + game.getTitle());
 	}
 
+	public void setNewPriceForGame (String gameTitle, float newPrice){
+		Game Game = findGameByTitle(GameTitle);
+		game.setPrice(newPrice);
+	}
+	
 	public void addNewGame(Game game) {
 		gameList.add(game);
-		logger.debug("dodano nowa gre do sklepu: " + game.getTitle());
+		logger.debug("Dodano nowa gre do sklepu: " + game.getTitle());
 	}
 
 	public void printAllGames() {
 		logger.info("Lista wszystkich gier w sklepie");
 		for (Game game : gameList) {
-			logger.info(movie.toString());
+			logger.info(game.toString());
 		}
 	}
 
@@ -40,12 +45,12 @@ public class GameStore {
 		return null;
 	}
 
-	public void rentGame(Customer customer, Game CoDGame) throws NoMoneyException {
+	public void purchaseGame(Customer customer, Game CoDGame) throws NoMoneyException {
 		if(CoDGame.isAvailable()){
 			float moneyFromCustomer;
 			moneyFromCustomer = customer.payMoney(CoDGame.getPrice());
 			totalCashInGameStore = totalCashInGameStore + moneyFromCustomer;
-			CoDGame.setAvailable(false); //
+			CoDGame.setAvailable(false); // nie ma gry w sklepie
 			customer.takeGame(CoDGame);
 			logger.debug("Klient " + customer.getName() + " wlasnie kupil gre " + CoDGame.getTitle());
 		}

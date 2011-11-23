@@ -24,7 +24,7 @@ public class Main {
 		gameStore.printAllGames();
 		
 		try {
-			Customer customer1 = new Customer("Adam Malysz", -200);
+			Customer customer1 = new Customer("Adam Malysz", -150);
 		
 		}catch (InvalidMoneyAmountValue exception) {
 			logger.error(exception.getMessage());
